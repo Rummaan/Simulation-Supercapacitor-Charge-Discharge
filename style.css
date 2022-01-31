@@ -18,6 +18,10 @@ div object{
     padding-left: 0px !important;
 }
 
+#stopwatch-button :hover{
+    stroke: black;
+    cursor: pointer;
+}
 
 
 .terminals,
@@ -39,29 +43,6 @@ div object{
     }
 }
 
-@keyframes glow-front {
-    0%{
-        stroke-width: 0.4%;
-    }
-    50%{
-        stroke-width: 0.25%;
-    }
-    100%{
-        stroke-width: 0.4%;
-    }  
-}
-
-@keyframes glow-side {
-    0%{
-        stroke-width: 0.4%;
-    }
-    50%{
-        stroke-width: 2%;
-    }
-    100%{
-        stroke-width: 0.4%;
-    }  
-}
 
 #wire1{
     display: none;
@@ -178,4 +159,7 @@ tr{
     transform-origin: 540px -270px;
 }
 
+/* #table-board{
+    opacity: 0.5;
+} */
 

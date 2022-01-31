@@ -31,6 +31,7 @@ function enablingSequence(sequenceNum){
             elem = document.getElementsByClassName(key)[0]
             elem.style.stroke = "#FFFF00"
             elem.style.animationName = "pulse"
+            elem.style.opacity = "1"
         }
     }        
 }
