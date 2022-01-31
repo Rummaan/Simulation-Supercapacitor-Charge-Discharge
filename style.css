@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@font-face {
+    font-family: customFont;
+    src: url(./assets/DS-DIGI.TTF);
+}
+.simulation-container object {
+    position: relative;
+    width: 100%;
+}
+
+div object{
+    width: 100%;
+    height: 100%;
+}
+
+.col{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+
+
+.terminals,
+#resistor,
+#capacitor{
+    animation: none 4s linear infinite;
+    cursor: pointer;
+}
+
+@keyframes glow-comp{
+    0%{
+        stroke-width: 0.4%;
+    }
+    50%{
+        stroke-width: 1.25%;
+    }
+    100%{
+        stroke-width: 0.4%;
+    }
+}
+
+@keyframes glow-front {
+    0%{
+        stroke-width: 0.4%;
+    }
+    50%{
+        stroke-width: 0.25%;
+    }
+    100%{
+        stroke-width: 0.4%;
+    }  
+}
+
+@keyframes glow-side {
+    0%{
+        stroke-width: 0.4%;
+    }
+    50%{
+        stroke-width: 2%;
+    }
+    100%{
+        stroke-width: 0.4%;
+    }  
+}
+
+#wire1{
+    display: none;
+    transition: display 10s;
+}
+
+.replacement{
+    transform: matrix(0.25, 0, 0, 0.25, 362, 130);
+}
+
+.hidden{
+    display: none;
+}
+
+@media (min-width: 1200px){
+    .container{
+        max-width: 95% !important;
+        margin-top: 2%;
+    }
+}
+
+.fcol{
+    width: 39%;
+}
+
+.scol{
+    width: 61%;
+    padding: 0% 2% 0% 2%;
+}
+
+.table{
+    display: flex;
+    height: 50%;
+    justify-content: center;
+    /* vertical-align: middle; */
+}
+
+table{
+    width: 50%;
+    text-align: center;
+}
+
+.table, th, tr{
+    border: 2px solid #dee2e6 ;
+}
+
+.table table td, .table table th{
+    padding: 0;
+    vertical-align: middle;
+}
+
+tr{
+    height: 5%;
+    font-size: 1vw;
+}
+
+.graph{
+    padding: 0px 0%;
+    height: 50%;
+}
+
+.graph canvas{
+    width: 100% !important;
+    height: 95% !important;
+}
+
+.pulse {
+    fill: white;
+    fill-opacity: 0;
+    /* transform-origin: -1297px 190px; */
+    animation-duration: 3s;
+    animation-name: none;
+    animation-iteration-count: infinite;
+    z-index: 1;
+    /* stroke: yellow; */
+}
+  
+@keyframes pulse {
+    0% {
+        stroke-width: 20px;
+        stroke-opacity: 1;
+        transform: scale(0.3);
+    }
+    100% {
+        stroke-width: 0;
+        stroke-opacity: 0.5;
+        transform: scale(2);
+    }
+}
+
+.one{
+    transform-origin: -1297px 190px;
+}
+
+.two{
+    transform-origin: -1385px 190px;
+}
+
+.three{
+    transform-origin: -1093px -105px;
+    z-index: -10;
+    cursor: pointer;
+}
+
+.four{
+    transform-origin: -1009px -105px;
+}
+
+.resistor{
+    transform-origin: 115px -234px;
+}
+
+.capacitor{
+    transform-origin: 540px -270px;
+}
+
+
