@@ -5,27 +5,20 @@ wireTerminalCheck = [{'two': false, 'three': false}, {'one': false, 'four': fals
                         {'resistor': false, 'three': false},{'four': false, 'capacitor': false}]
 
 terminalMap = {0:'one', 1:'two', 2:'three', 3:'four','resistor': 'resistor', 'capacitor':'capacitor'}
-   
+
+var xValues = [0,30,60,90,120,150,180,210,240,270,300,330,360];
 
 sequenceNum = 0
+
+var rowData =  {'sno':0, 'time': 0, 'volts': 0}
+localStorage.setItem("rowData", JSON.stringify(rowData))
 
 setTimeout(() => {
     enablingSequence(sequenceNum)
 }, 2000);
 
-// function increment(){
-//     elem = document.getElementsByTagName('h2')[0]
-//     voltage = parseFloat(elem.textContent)
-//     // setInterval(() => {
-//     //     voltage += 1.00
-//     //     elem.textContent = voltage+'.00'
-//     // }, 1000);
-// }
 
-// increment()
-
-function enablingSequence(sequenceNum){
-    // terminals = document.getElementsByClassName('terminals')       
+function enablingSequence(sequenceNum){    
     if(sequenceNum <= wireTerminalCheck.length){
         for(var key in wireTerminalCheck[sequenceNum]){
             elem = document.getElementsByClassName(key)[0]
@@ -45,8 +38,6 @@ function trial(componentSom){
     elem = document.getElementsByClassName(componentSomMap)[0]
     elem.style.animationName = "none"
     elem.style.stroke = "none"
-    
-
     // console.log(checkPair())
     dum = checkPair(sequenceNum)
     // console.log(dum)
@@ -60,7 +51,6 @@ function trial(componentSom){
         else
             replacement()
     }
-
 }
 
 function checkPair(sequenceNum){
@@ -77,171 +67,69 @@ function checkPair(sequenceNum){
 function replacement(){
     document.getElementById('black-board').classList.add('hidden')
     document.getElementById('table-board').classList.add('replacement');
+    document.getElementById('stopwatch-button').onclick = function(){
+        startWorking()
+    }
 }
 
-setTimeout(() => {
-    chartRenderData()
-}, 2000);
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
 
-function chartRenderData(){
-    xValuesdum = []
+startGraph = false
+
+function startWorking(){
+    rowData =  {'sno':0, 'time': 0, 'volts': 0.36}
+    localStorage.setItem("rowData", JSON.stringify(rowData))
+    stopwatch = document.getElementById('stopwatch')
+    voltmeter = document.getElementById('volt')
+    voltmeter.textContent = "00.36"
+    volt = 36
+    time = 0
+    min = 4
+    max = 6
+    srno = 1
     yValuesdum = []
-    var count = 0
-    setInterval(() => {
-        if (count < xValues.length) {
-            xValuesdum[count] = xValues[count]
-            yValuesdum[count] = yValues[count]
-            count++;
-            drawChart(xValuesdum, yValuesdum)
+    stopwatchTime = setInterval(() => {
+        if(time< 10)
+            stopwatch.textContent = '00'+time+'.0'
+        else if(time<100)
+            stopwatch.textContent = '0'+time+'.0'
+        else
+            stopwatch.textContent = time+'.0'
+        time++
+        if(time == 211){
+            clearInterval(stopwatchTime)
+            clearInterval(voltReading)
+            clearInterval(dataPass)
+        }
+    }, 330);
+    voltReading = setInterval(() => {
+        volt += getRndInteger(min, max)
+        if(volt<100)
+            voltmeter.textContent = "00."+volt
+        else if(volt < 200){
+            if(volt < 110)
+                voltmeter.textContent = "01.0"+(volt-100)
+            else 
+                voltmeter.textContent = "01."+(volt-100)
         }
     }, 1000);
-
+    dataPass = setInterval(() => {
+        if(min>0) min--
+        if(max>1) max--
+        console.log(min, max)
+        yValue = parseFloat(voltmeter.textContent)
+        yValuesdum.push(yValue)
+        console.log(yValuesdum)
+        rowData.sno = srno
+        rowData.time = xValues[srno]
+        rowData.volts = yValue
+        srno++
+        localStorage.setItem('rowData', JSON.stringify(rowData))
+    }, 9901);
 }
 
-function drawChart(xValues, yValues){
-    new Chart("myChart", {
-        type: "line",
-        data: {
-            labels: xValues,
-            datasets: [{
-                fill: false,
-                lineTension: 0,
-                pointBackgroundColor: "purple",
-                borderColor: "#44c17b",
-                data: yValues
-            }]
-        },
-        options: {
-            title:{
-                display: true,
-                text: 'Charging and Discharging Characteristics of Supercapacitors',
-                fontSize: 18,
-                padding: 15
-            },
-            legend: {display: false},
-            scales: {
-                yAxes: [ {
-                    ticks: {min:6, max:16},
-                    scaleLabel: {
-                        display: true,
-                        labelString:'Voltage (V)',
-                        fontSize: 14,
-                        fontColor: "#000"
-                    }
-                }],
-                xAxes: [ {
-                    scaleLabel: {
-                        display: true,
-                        labelString:'Time (s)',
-                        fontSize: 14,
-                        fontColor: "#000"
-                    }
-                }],
-            },
-            animation:{
-                duration:1
-            }
-        }
-    });
-}
-
-var xValues = [50,60,70,80,90,100,110,120,130,140,150];
-var yValues = [7,8,8,9,9,9,10,11,14,14,15];
-
-new Chart("myChart", {
-    type: "line",
-    data: {
-        labels: [],
-        datasets: [{
-            fill: false,
-            lineTension: 0,
-            pointBackgroundColor: "purple",
-            borderColor: "#44c17b",
-            data: []
-        }]
-    },
-    options: {
-        title:{
-            display: true,
-            text: 'Charging and Discharging Characteristics of Supercapacitors',
-            fontSize: 18,
-            padding: 15
-        },
-        legend: {display: false},
-        scales: {
-            yAxes: [ {
-                ticks: {min:6, max:16},
-                scaleLabel: {
-                    display: true,
-                    labelString:'Voltage (V)',
-                    fontSize: 14,
-                    fontColor: "#000"
-                }
-            }],
-            xAxes: [ {
-                scaleLabel: {
-                    display: true,
-                    labelString:'Time (s)',
-                    fontSize: 14,
-                    fontColor: "#000"
-                }
-            }],
-        },
-        animation:{
-            duration:1
-        }
-    }
-});
-
-// setTimeout(() => {
-//     var xValues = [50,60,70,80,90,100];
-//     var yValues = [7,8,8,9,9,9];
-
-//     new Chart("myChart", {
-//         type: "line",
-//         data: {
-//             labels: xValues,
-//             datasets: [{
-//                 fill: false,
-//                 lineTension: 0,
-//                 pointBackgroundColor: "purple",
-//                 borderColor: "#44c17b",
-//                 data: yValues
-//             }]
-//         },
-//         options: {
-//             title:{
-//                 display: true,
-//                 text: 'Charging and Discharging Characteristics of Supercapacitors',
-//                 fontSize: 18, 
-//                 padding: 15
-//             },
-//             legend: {display: false},
-//             scales: {
-//                 yAxes: [{
-//                     ticks: {min:6, max:16},
-//                     scaleLabel: {
-//                         display: true,
-//                         labelString:'Voltage (V)',
-//                         fontColor: '#000',
-//                         fontSize: 14
-//                     }
-//                 }],
-//                 xAxes: [{
-//                     scaleLabel: {
-//                         display: true,
-//                         labelString:'Time (s)',
-//                         fontSize: 14,
-//                         fontColor: '#000'
-//                     }
-//                 }],
-//             },
-//             animation:{
-//                 duration:1
-//             }
-//         }
-//     });    
-// }, 3000);
 
 
 

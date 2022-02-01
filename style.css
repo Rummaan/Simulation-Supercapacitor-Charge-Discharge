@@ -85,7 +85,7 @@ table{
     text-align: center;
 }
 
-.table, th, tr{
+.table, th, tr, td{
     border: 2px solid #dee2e6 ;
 }
 
@@ -106,7 +106,7 @@ tr{
 
 .graph canvas{
     width: 100% !important;
-    height: 95% !important;
+    /* height: 95% !important; */
 }
 
 .pulse {
