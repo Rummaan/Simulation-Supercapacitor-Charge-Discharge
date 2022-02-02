@@ -53,7 +53,7 @@
     <ellipse transform="scale(1,-1)" cx="-1387" cy="-202" rx="9.39" ry="8.95" style="fill-opacity:.996"/>
    </g>
    <ellipse cx="-1374" cy="126" rx="17.7" ry="13.3" style="fill:#666;opacity:.547"/>
-   <ellipse cx="-1375" cy="127" rx="17.7" ry="13.3" style="fill:#b3b3b3"/>
+   <ellipse id="power-btn"  cx="-1375" cy="127" rx="17.7" ry="13.3" style="fill:#b3b3b3"/>
    <g transform="matrix(.788 0 0 .791 -275 27.1)">
     <ellipse cx="-1302" cy="108" rx="10.7" ry="11" style="fill:#666"/>
     <ellipse cx="-1304" cy="108" rx="10.7" ry="11" style="fill:#b3b3b3"/>
