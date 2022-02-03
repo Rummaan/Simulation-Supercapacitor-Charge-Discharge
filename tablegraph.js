@@ -85,8 +85,9 @@ var chart = new Chart("myChart", {
             display: true,
             text: 'Plot of Charging and Discharging Characteristic',
             fontSize: 18,
-            padding: 25,
-            fontColor: 'black'
+            // padding: 25,
+            fontColor: 'black',
+            // backgroundColor: '#007bff'
         },
         legend: {display: false},
         scales: {

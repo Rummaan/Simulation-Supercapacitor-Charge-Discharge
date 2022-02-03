@@ -60,7 +60,7 @@ div object{
 @media (min-width: 1200px){
     .container{
         max-width: 95% !important;
-        margin-top: 2%;
+        margin-top: 1%;
     }
 }
 
@@ -77,6 +77,7 @@ div object{
     display: flex;
     height: 50%;
     justify-content: center;
+    margin-bottom: 0px !important;
     /* vertical-align: middle; */
 }
 
@@ -86,7 +87,29 @@ table{
     margin: 0 0.5%;
 }
 
-th, tr, td{
+th{
+    background-color: #212529;
+    color: #FFF;
+    /* height: 20px; */
+}
+
+.tablehead, .obs{
+    /* background-color: #007bff; */
+    color: #fff;
+}
+
+.tablehead h4{
+    margin-bottom: 0px;
+}
+
+.obs{
+    background-color: #007bff;
+    text-align: center;
+    padding: 1%;
+    margin: 0 0.5%;
+}
+
+th, tr, td, .obs{
     border: 2px solid #dee2e6 ;
 }
 
@@ -101,13 +124,14 @@ tr{
 }
 
 .graph{
-    padding: 0px 0%;
+    padding: 1% 0%;
     height: 50%;
 }
 
 .graph canvas{
-    width: 100% !important;
-    /* height: 95% !important; */
+    width: 95% !important;
+    height: 75% !important;
+    margin-left: 3%;
 }
 
 .pulse {
@@ -163,7 +187,7 @@ tr{
 #snackbar {
     visibility: hidden;
     min-width: 250px;
-    background-color: rgb(30, 30, 77);
+    background-color:#007bff;
     color: #fff;
     text-align: center;
     border-radius: 2px;
