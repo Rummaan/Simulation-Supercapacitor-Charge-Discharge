@@ -19,7 +19,7 @@ div object{
     padding-left: 0px !important;
 }
 
-#stopwatch-button, #power-btn {
+#stopwatch-button, #power-btn, #checker{
     cursor: pointer;
 }
 
@@ -98,7 +98,7 @@ th{
     color: #fff;
 }
 
-.tablehead h4{
+.tablehead h4, .tablehead h5{
     margin-bottom: 0px;
 }
 
@@ -132,6 +132,7 @@ tr{
     width: 95% !important;
     height: 75% !important;
     margin-left: 3%;
+    margin-top: 2%;
 }
 
 .pulse {

@@ -1,6 +1,6 @@
 // 0->one 1->two 2->three 3->four
 
-wireTerminalCheck = [{'two': false, 'three': false}, {'one': false, 'four': false},
+wireTerminalCheck = [{'one': false, 'four': false},
                         {'two': false,'resistor': false},{'three': false, 'capacitor': false},
                         {'resistor': false, 'three': false},{'four': false, 'capacitor': false}]
 
@@ -45,7 +45,7 @@ function trial(componentSom){
     dum = checkPair(sequenceNum)
     // console.log(dum)
     if(dum){
-        wireName = 'wire'+(sequenceNum+1)
+        wireName = 'wire'+(sequenceNum+2)
         document.getElementById(wireName).style.transition = "display 10s"
         document.getElementById(wireName).style.display = "block"
         ++sequenceNum
@@ -131,6 +131,13 @@ function startWorking(conditionChar){
                 clearInterval(voltReading)
                 clearInterval(dataPass)
                 localStorage.setItem("transitionDis", true)
+                // elem = document.getElementById("checker")
+                // elem.style.stroke = "#FFFF00"
+                // elem.style.animationName = "pulse"
+                // elem.style.opacity = "1"
+                // elem.onclick = function(){
+                //     startWorking('discharging')
+                // }
                 setTimeout(() => {
                     startWorking('discharging')    
                 }, 4000);

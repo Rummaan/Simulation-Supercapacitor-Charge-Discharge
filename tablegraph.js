@@ -81,14 +81,14 @@ var chart = new Chart("myChart", {
         }]
     },
     options: {
-        title:{
-            display: true,
-            text: 'Plot of Charging and Discharging Characteristic',
-            fontSize: 18,
-            // padding: 25,
-            fontColor: 'black',
-            // backgroundColor: '#007bff'
-        },
+        // title:{
+        //     display: true,
+        //     text: 'Plot of Charging and Discharging Characteristic',
+        //     fontSize: 18,
+        //     // padding: 25,
+        //     fontColor: 'black',
+        //     // backgroundColor: '#007bff'
+        // },
         legend: {display: false},
         scales: {
             yAxes: [ {
