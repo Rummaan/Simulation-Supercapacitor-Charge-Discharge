@@ -14,14 +14,14 @@ setTimeout(() => {
 function fillTable(tabledata){
     filltableintrval = setInterval(() => {
         if(localStorage.getItem("fullScreen") == 'true'){
-            snackbarFunction("Press on the Stopwatch button and Power Supply button to begin the Readings.")
+            snackbarFunction("Put the key and press on the Power Supply button and Stopwatch button to begin.")
             localStorage.setItem("fullScreen", false)
             setTimeout(() => {
                 snackbarFunction("Readings are automatically recorded in the Table and Graph will be plotted.")
             }, 13000);
         }
         if(localStorage.getItem("transitionDis") == 'true'){
-            snackbarFunction("Since the Supercapcitor is Fully Charged, we will now start to discharge the Supercapacitor")
+            snackbarFunction("Since the Supercapcitor is Fully Charged, put the Discharge key to discharge the Supercapacitor")
             localStorage.setItem("transitionDis", false)
         }
         var rowData = JSON.parse(localStorage.getItem('rowData'))

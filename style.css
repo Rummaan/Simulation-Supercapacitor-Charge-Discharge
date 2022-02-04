@@ -43,14 +43,19 @@ div object{
     }
 }
 
+#supercapacitor-head{
+    fill: #FFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
 
-#wire1{
+#wire1, #wire2, #wire3, #wire4,
+#wire5, #wire6, #wire7, #wire8{
     display: none;
-    transition: display 10s;
 }
 
 .replacement{
-    transform: matrix(0.25, 0, 0, 0.25, 362, 130);
+    transform: matrix(1.35, 0, 0, 1.35, -32.5, -63)
 }
 
 .hidden{
@@ -141,6 +146,7 @@ tr{
     /* transform-origin: -1297px 190px; */
     animation-duration: 3s;
     animation-name: none;
+    animation-timing-function: linear;
     animation-iteration-count: infinite;
     z-index: 1;
     /* stroke: yellow; */
@@ -169,12 +175,20 @@ tr{
 
 .three{
     transform-origin: -1093px -105px;
-    z-index: -10;
+    /* z-index: -10; */
     cursor: pointer;
 }
 
 .four{
     transform-origin: -1009px -105px;
+}
+
+.five{
+    transform-origin:-1255px 268px;
+}
+
+.six{
+    transform-origin:-913px 125px;
 }
 
 .resistor{
@@ -221,4 +235,27 @@ tr{
   @keyframes fadeout {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
+  }
+
+  #key1, #key2{
+      display: none;
+  }
+
+  .key-up-down{
+      animation: up-down 3s linear infinite;
+      stroke: yellow !important;
+      stroke-width: 2px !important;
+  }
+
+  @keyframes up-down {
+      0%{
+          transform: translate(0,0);
+      }
+      50%{
+          transform: translate(0px, -3px);
+      }
+      100%{
+          transform: translate(0px, 0px);
+      }
+      
   }

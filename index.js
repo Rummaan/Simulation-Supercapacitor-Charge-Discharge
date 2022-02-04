@@ -1,10 +1,11 @@
 // 0->one 1->two 2->three 3->four
 
-wireTerminalCheck = [{'one': false, 'four': false},
-                        {'two': false,'resistor': false},{'three': false, 'capacitor': false},
-                        {'resistor': false, 'three': false},{'four': false, 'capacitor': false}]
+wireTerminalCheck = [{'capacitor': false, 'three': false},{'capacitor': false, 'four': false},
+                        {'four': false,'resistor': false},{'three': false, 'six': false},
+                        {'resistor': false, 'six': false},{'five': false, 'resistor': false},
+                        {'two': false, 'five': false},{'one': false, 'three': false}]
 
-terminalMap = {0:'one', 1:'two', 2:'three', 3:'four','resistor': 'resistor', 'capacitor':'capacitor'}
+terminalMap = {0:'one', 1:'two', 2:'three', 3:'four','resistor': 'resistor', 'capacitor':'capacitor', 4:'five', 5:'six'}
 
 var xValues = [0,30,60,90,120,150,180,210,240,270,300,330,360];
 
@@ -14,7 +15,7 @@ var rowData =  {'sno':0, 'time': 0, 'volts': 0}
 localStorage.setItem("rowData", JSON.stringify(rowData))
 localStorage.setItem("fullScreen", false)
 localStorage.setItem("transitionDis", false)
-var btnPressed = [false, false]
+var btnPressed = [false, false, false]
 
 setTimeout(() => {
     enablingSequence(sequenceNum)
@@ -41,18 +42,23 @@ function trial(componentSom){
     elem = document.getElementsByClassName(componentSomMap)[0]
     elem.style.animationName = "none"
     elem.style.stroke = "none"
-    // console.log(checkPair())
+    console.log(checkPair())
     dum = checkPair(sequenceNum)
     // console.log(dum)
     if(dum){
-        wireName = 'wire'+(sequenceNum+2)
+        wireName = 'wire'+(sequenceNum+1)
         document.getElementById(wireName).style.transition = "display 10s"
         document.getElementById(wireName).style.display = "block"
         ++sequenceNum
-        if(sequenceNum < wireTerminalCheck.length)
+        if(sequenceNum < wireTerminalCheck.length){
             enablingSequence(sequenceNum)
-        else
+            console.log('here')
+        }
+        else{
+            console.log('here')
             replacement()
+            
+        }
     }
 }
 
@@ -66,6 +72,12 @@ function checkPair(sequenceNum){
             return true   
         return false
 }    
+
+function keyPut(){
+    document.getElementById('key1').style.animation = "none"
+    document.getElementById('key1').onclick = function(){}
+    document.getElementById('keyBase1').onclick = function(){}
+}
     
 function replacement(){
     document.getElementById('black-board').classList.add('hidden')
@@ -78,10 +90,22 @@ function replacement(){
     }
 
     document.getElementById('power-btn').style.stroke = "yellow"
-    document.getElementById('power-btn').style.strokeWidth = "2%"
+    document.getElementById('power-btn').style.strokeWidth = "0.25%"
     document.getElementById('power-btn').onclick = function(){
         checkbtnPressed(0)
     }
+
+    document.getElementById('key1').style.display = "block"
+    document.getElementById('key1').classList.add('key-up-down')
+    document.getElementById('key1').onclick = function(){
+        checkbtnPressed(2)
+        keyPut()
+    }
+    document.getElementById('keyBase1').onclick = function(){
+        checkbtnPressed(2)
+        keyPut()
+    }
+
     localStorage.setItem('fullScreen', true)
 }
 
@@ -104,19 +128,26 @@ function checkbtnPressed(btnNum){
     }
 }
 
+function keyOp(){
+    document.getElementById('key1').style.display = "none"
+    document.getElementById('key2').style.animation = "none"
+    document.getElementById('key2').onclick = function(){}
+    document.getElementById('keyBase2').onclick = function(){}
+    startWorking('discharging')
+}
+
 function startWorking(conditionChar){
     rowData =  {'sno':0, 'time': 0, 'volts': 0.36}
     localStorage.setItem("rowData", JSON.stringify(rowData))
     stopwatch = document.getElementById('stopwatch')
     voltmeter = document.getElementById('volt')
+
     if(conditionChar === 'charging'){
-        // voltmeter.textContent = "00.36"
         volt = 36
         time = 0
         min = 4
         max = 6
         srno = 1
-        // actualWorking(volt, time, min, max, srno)
         yValuesdum = []
         stopwatchTime = setInterval(() => {
             if(time< 10)
@@ -131,16 +162,15 @@ function startWorking(conditionChar){
                 clearInterval(voltReading)
                 clearInterval(dataPass)
                 localStorage.setItem("transitionDis", true)
-                // elem = document.getElementById("checker")
-                // elem.style.stroke = "#FFFF00"
-                // elem.style.animationName = "pulse"
-                // elem.style.opacity = "1"
-                // elem.onclick = function(){
-                //     startWorking('discharging')
-                // }
-                setTimeout(() => {
-                    startWorking('discharging')    
-                }, 4000);
+                elem = document.getElementById('key2')
+                elem.classList.add('key-up-down')
+                elem.style.display = "block"
+                elem.onclick = function(){
+                   keyOp()
+                }
+                document.getElementById('keyBase2').onclick = function(){
+                    keyOp()
+                }
             }
         }, 330);
         voltReading = setInterval(() => {
@@ -171,7 +201,6 @@ function startWorking(conditionChar){
         min = 3
         max = 6
         srno = 8
-        // actualWorking(volt, time, min, max, srno)
         yValuesdum = []
         stopwatchTime = setInterval(() => {
             stopwatch.textContent = time+'.0'
