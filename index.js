@@ -1,9 +1,9 @@
 // 0->one 1->two 2->three 3->four
 
 wireTerminalCheck = [{'capacitor': false, 'three': false},{'capacitor': false, 'four': false},
-                        {'four': false,'resistor': false},{'three': false, 'six': false},
+                        {'four': false,'six': false}, {'three': false,'resistor': false},
                         {'resistor': false, 'six': false},{'five': false, 'resistor': false},
-                        {'two': false, 'five': false},{'one': false, 'three': false}]
+                        {'one': false, 'five': false}, {'two': false, 'six': false}]
 
 terminalMap = {0:'one', 1:'two', 2:'three', 3:'four','resistor': 'resistor', 'capacitor':'capacitor', 4:'five', 5:'six'}
 
@@ -81,7 +81,7 @@ function keyPut(){
     
 function replacement(){
     document.getElementById('black-board').classList.add('hidden')
-    document.getElementById('table-board').classList.add('replacement');
+    document.getElementById('table-board').classList.add('replacement')
 
     document.getElementById('stopwatch-button').style.stroke = "yellow"
     document.getElementById('stopwatch-button').style.strokeWidth = "1%"
@@ -116,14 +116,14 @@ function getRndInteger(min, max) {
 function checkbtnPressed(btnNum){
     btnPressed[btnNum] = true
     if(btnNum == 0){
-        document.getElementById("power").textContent = "02.50"
+        document.getElementById('power').textContent = "02.50"
         document.getElementById('volt').textContent = "00.36"
         document.getElementById('power-btn').style.strokeWidth = "0%"
     }
-    else
+    else if(btnNum == 1)
         document.getElementById('stopwatch-button').style.strokeWidth = "0%"
     
-    if(btnPressed[0] && btnPressed[1]){    
+    if(btnPressed[0] && btnPressed[1] && btnPressed[2]){    
         startWorking('charging')
     }
 }

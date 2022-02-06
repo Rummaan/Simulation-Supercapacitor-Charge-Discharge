@@ -43,7 +43,7 @@ div object{
     }
 }
 
-#supercapacitor-head{
+#supercapacitor-head, #disKey{
     fill: #FFF;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
@@ -184,7 +184,7 @@ tr{
 }
 
 .five{
-    transform-origin:-1255px 268px;
+    transform-origin:-1095px 265px;
 }
 
 .six{
