@@ -259,3 +259,40 @@ tr{
       }
       
   }
+
+@media only screen and (max-width:767px) {
+    .row {
+        display: flex;
+        flex-flow: column-reverse;
+    }
+
+    .table table td,
+    .table table th {
+        padding: 0;
+        vertical-align: middle;
+        height: 5%;
+        font-size: 2vw;
+    }
+
+    tr {
+        height: 5%;
+        font-size: 2vw;
+    }
+
+    .spc {
+        margin-top: 5px;
+    }
+
+    .bt{
+        /* margin-bottom: 10px; */
+        margin-top: 8px;
+    }
+
+    .bg{
+        background-color: rgb(144, 180, 247);
+        text-decoration: #000000;
+    }
+    .fb{
+        font-size: 6.7px;
+    }
+}
