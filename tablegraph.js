@@ -1,6 +1,5 @@
 var tableDat1 = document.getElementById("table1")
 var tableDat2 = document.getElementById("table2")
-console.log(tableDat2.rows[2].cells)
 
 yValuesdum = []
 voltTriggger = 0
@@ -26,15 +25,20 @@ function fillTable(tabledata){
         }
         var rowData = JSON.parse(localStorage.getItem('rowData'))
         if(rowData.volts && rowData.sno < 8){
-            console.log('here')
             if(voltTriggger < rowData.volts){
                 voltTriggger = rowData.volts
                 chartRenderData(voltTriggger)
             }
-            x = tabledata.rows[rowData.sno + 2].cells
-            x[0].textContent = rowData.sno + 1
-            x[1].textContent = rowData.time
-            x[2].textContent = rowData.volts
+            srno = document.getElementsByClassName("srno")[rowData.sno]
+            time = document.getElementsByClassName("time")[rowData.sno]
+            voltage = document.getElementsByClassName("voltage")[rowData.sno]
+            srno.value = rowData.sno + 1
+            time.value = rowData.time
+            voltage.value = rowData.volts
+            // x = tabledata.rows[rowData.sno + 2].cells
+            // x[0].textContent = rowData.sno + 1
+            // x[1].textContent = rowData.time
+            // x[2].textContent = rowData.volts
         }
         if(rowData.sno == 12){
             clearInterval(filltableintrval)
@@ -50,13 +54,19 @@ function fillTableDischarge(tabledata){
                 voltTriggger = rowData.volts
                 chartRenderData(voltTriggger)
             }
-            x = tabledata.rows[rowData.sno + 2 - 8].cells
-            x[0].textContent = rowData.sno + 1 - 8
-            x[1].textContent = rowData.time
-            x[2].textContent = rowData.volts
+            srno = document.getElementsByClassName("srno")[rowData.sno]
+            time = document.getElementsByClassName("time")[rowData.sno]
+            voltage = document.getElementsByClassName("voltage")[rowData.sno]
+            srno.value = rowData.sno + 1 - 8
+            time.value = rowData.time
+            voltage.value = rowData.volts
             if(rowData.sno == 12){
                 clearInterval(filltabledischargeinterval)
                 snackbarFunction("The Experiment is Successfully completed!")
+                setTimeout(() => {
+                    document.getElementById("snackbar").style.display = "none"
+                    document.getElementsByClassName("btn-sbt")[0].style.display = "block"
+                }, 7000);
             }
         }
     }, 500);

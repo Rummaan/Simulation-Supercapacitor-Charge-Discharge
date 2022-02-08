@@ -78,6 +78,10 @@ div object{
     padding: 0% 2% 0% 2%;
 }
 
+form{
+    height: 50%;
+}
+
 .table{
     display: flex;
     height: 50%;
@@ -105,6 +109,21 @@ th{
 
 .tablehead h4, .tablehead h5{
     margin-bottom: 0px;
+}
+
+.srno, .time, .voltage{
+    text-align: center;
+    border: 0px;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.srno{
+    width: 20%;
+}
+
+.time, .voltage{
+    width: 40%;
 }
 
 .obs{
@@ -138,6 +157,12 @@ tr{
     height: 75% !important;
     margin-left: 3%;
     margin-top: 2%;
+}
+
+.simulation-container .btn-sbt{
+    margin-left: 40%;
+    margin-top: 2%;
+    display: none;
 }
 
 .pulse {
@@ -294,5 +319,9 @@ tr{
     }
     .fb{
         font-size: 6.7px;
+    }
+    .btn-sbt{
+        margin-left: 35%;
+        
     }
 }

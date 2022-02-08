@@ -42,7 +42,7 @@ function trial(componentSom){
     elem = document.getElementsByClassName(componentSomMap)[0]
     elem.style.animationName = "none"
     elem.style.stroke = "none"
-    console.log(checkPair())
+    // console.log(checkPair())
     dum = checkPair(sequenceNum)
     // console.log(dum)
     if(dum){
@@ -52,10 +52,10 @@ function trial(componentSom){
         ++sequenceNum
         if(sequenceNum < wireTerminalCheck.length){
             enablingSequence(sequenceNum)
-            console.log('here')
+            // console.log('here')
         }
         else{
-            console.log('here')
+            // console.log('here')
             replacement()
             
         }
@@ -67,7 +67,7 @@ function checkPair(sequenceNum){
     for(var key in wireTerminalCheck[sequenceNum])
         if(wireTerminalCheck[sequenceNum][key] == true)
             count++
-        console.log(count, 'count')
+        // console.log(count, 'count')
         if(count == 2)
             return true   
         return false
